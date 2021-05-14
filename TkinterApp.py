@@ -1,7 +1,11 @@
 from tkinter import *
+import random
 
 top = Tk()
 songList = []
+myRolls = []
+rollTimes = 0
+dieType = 0
 
 
     
@@ -44,17 +48,36 @@ def week1():
     E1.grid(column= 0, row= 2)
 
     #This is a button widget
-    B1 = Button(text = " + ", bg = "white", command = addTrack)
+    B1 = Button(text = "Add", bg = "white", command = addTrack)
     B1.grid(column= 1, row= 2)
 
     #This is another button widget
-    B2 = Button(text = "Playlist", bg = "#d4850f", command = printList)
+    B2 = Button(text = "Print", bg = "#c78bc7", command = printList)
     B2.grid(column= 1, row= 1)
 
-    B3 = Button(text = "Export", bg= "#4940e6", command=exportList)
+    B3 = Button(text = "Export", bg= "#ccc423", command=exportList)
     B3.grid(column= 1, row= 3)
 
+    B4 = Button(text = "Main Menu", bg = "yellow", command = mainMenu)
+    B4.grid(column = 0, row = 3)
+
 def week2():
+    def rollDice():
+        rollTimes = E1W2.get()
+        dieType = E2W2.get()
+        clearWindow()
+        for x in range(0, int(rollTimes)):
+            myRolls.append(random.randint(1, int(dieType)))
+
+        L4W2 = Label(top, text = "Here are your rolls!")
+        L4W2.grid(column = 0, row = 1)
+        
+        L5W2 = Label(top, text = "{}".format(myRolls))
+        L5W2.grid(column = 0, row = 2)
+        
+        B2W2 = Button(text = "Main Menu", bg = "yellow", command = mainMenu)
+        B2W2.grid(column = 0, row = 3)
+        
     clearWindow()
 
     L1W2 = Label(top, text = "Dice Roller")
@@ -72,7 +95,7 @@ def week2():
     E2W2 = Entry(top, bd = 5)
     E2W2.grid(column= 3, row= 3)
     
-    B1W2 = Button(text = "Roll them!", bg = "yellow")
+    B1W2 = Button(text = "Roll them!", bg = "#e787ff", command = rollDice)
     B1W2.grid(column= 2, row= 4)
 
 if __name__ == "__main__":
